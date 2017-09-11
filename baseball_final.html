@@ -15,25 +15,25 @@
     }
   </style>
     <script type="text/javascript">
+      "use strict";
       function draw(data) {
       
       /*
         D3.js setup code
       */
 
-          "use strict";
           var margin = 75,
               width = 1400 - margin,
               height = 600 - margin;
 
-          d3.select('body')
+          d3.select('#chart')
             .append('h2')
             .text("Baseball Batting Averages by Groups")
             .append('h4')
             .text("sub-divided by 'Righties', 'Lefties' and 'Switch Hitters' ")
 
 
-          var svg = d3.select("body")
+          var svg = d3.select("#chart")
             .append("svg")
               .attr("width", width + margin)
               .attr("height", height + margin)
@@ -58,6 +58,7 @@
           myChart.addCategoryAxis("x", "Batting_Average");
           myChart.addMeasureAxis("y", "Players");
           myChart.addSeries("handedness", dimple.plot.bar);
+          myChart.addSeries(null, dimple.plot.line);
           myChart.stacked = true;
           myChart.draw();
         };
@@ -71,5 +72,12 @@
     */
   d3.csv("baseball_data2.csv", draw);
   </script>
+  <div id="chart"></div>
+  <p>The 3 things the above graphic clearly shows regarding Major League Baseball (MLB) batting averages are:</p>
+  <ol>
+    <li>Pitchers do not bat often in MLB; the zero and below .200 batting average groups are virtually all MLB pitchers.</li>
+    <li>MLB batting averages are normally distributed, almost a 'Bell Curve', between .200 and .300 averages with with a center of .250 average.</li>
+    <li>The proportion of Left-handed batters increases at the higher batting average ranges.</li>
+  </ol>
 </body>
 </html>
